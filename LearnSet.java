@@ -1,40 +1,35 @@
 import java.util.HashSet;
-import java.util.Random;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
 import java.util.Set;
+import java.util.Random;
 
-/**
- * A Set is a collection that contains NO duplicate elements.
- * HashSet uses a Hash Table for storage, meaning order is NOT guaranteed.
- */
 public class LearnSet {
     public static void main(String[] args) {
         Random random = new Random();
-        Set<Integer> set = new HashSet<>();
 
-        // 1. ADDING (With Randomness)
+        // 1. HashSet: Best performance, but order is totally random/unpredictable.
+        // Set<Integer> set = new HashSet<>();
+
+        // 2. LinkedHashSet: Maintains the order in which elements were inserted.
+        // Set<Integer> set = new LinkedHashSet<>();
+
+        // 3. TreeSet: Elements are stored in a sorted tree structure (Natural Order).
+        Set<Integer> set = new TreeSet<>();
+
         System.out.println("Generating random numbers...");
-        for (int i = 0; i < 5; i++) {
-            int num = random.nextInt(10);
-            boolean isAdded = set.add(num);
-            System.out.println("Generated: " + num + " | Added successfully? " + isAdded);
+        for (int i = 0; i < 10; i++) {
+            int num = random.nextInt(50);
+            set.add(num);
         }
 
-        // 2. OBSERVING UNIQUENESS
-        // Notice the size might be less than 5 if duplicates were generated!
-        System.out.println("Initial Set (Unique values only): " + set);
+        // Because you used TreeSet, this will print in ascending order (e.g., [2, 15, 22...])
+        System.out.println("Set Elements: " + set);
 
-        // 3. REMOVING
-        // In Sets, you remove by VALUE, not index (because there are no indices!)
-        set.remove(0); 
-        System.out.println("After removing '0' (if it existed): " + set);
-
-        // 4. CHECKING PROPERTIES
-        System.out.println("Does set contain 2? " + set.contains(2));
-        System.out.println("Is set empty? " + set.isEmpty());
-        System.out.println("Current size: " + set.size());
-
-        // 5. CLEARING
-        set.clear();
-        System.out.println("After clear(), is it empty? " + set.isEmpty());
+        // Standard Set Operations
+        System.out.println("Contains 25? " + set.contains(25));
+        set.remove(10); // Removes the number 10, not the 10th index!
+        
+        System.out.println("Size after removal: " + set.size());
     }
 }
