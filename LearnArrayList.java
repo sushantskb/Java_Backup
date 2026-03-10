@@ -1,44 +1,20 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A comprehensive guide to ArrayList operations in Java.
+ * ArrayLists are part of the Collections Framework and provide dynamic sizing,
+ * unlike standard Arrays.
+ */
 public class LearnArrayList {
     public static void main(String[] args) {
-        // String[] studentName = new String[30];
-        // studentName[0] = "Sushant";
 
-        // //
-        // // studentName[1]....studentName[28];
-        // //
-        // studentName[29] = "Rahul";
-
-        // for (int i = 0; i < studentName.length; i++) {
-        // System.out.println(studentName[i]);
-        // }
-
-        // the problem with the above approach is we cannot increase the size of an
-        // array dynamically....
-
+        // 1. INITIALIZATION
+        // List is the interface, ArrayList is the implementation.
         List<Integer> list = new ArrayList<>();
-        // list.add(1);
-        // list.add(2);
-        // list.add(3);
-        // System.out.println(list);
 
-        // list.add(4); // this will add 4 at the end of the list....
-        // System.out.println(list);
-
-        // list.add(1, 50);
-        // System.out.println(list);
-
-        // List<Integer> newList = new ArrayList(); // creating a new array list...
-        // newList.add(150);
-        // newList.add(160);
-
-        // list.addAll(newList); // this will add all the elements to old list
-        // System.out.println(list);
-
-        // System.out.println(list.get(1));
-
+        // 2. ADDING ELEMENTS
         list.add(10);
         list.add(20);
         list.add(30);
@@ -49,31 +25,62 @@ public class LearnArrayList {
         list.add(80);
         list.add(90);
         list.add(100);
-        System.out.println(list);
+        
+        // Adding at a specific index (index, value)
+        // This shifts existing elements to the right.
+        list.add(1, 15); 
 
-        // Removing
-        // list.remove(1); // this will remove the element from the specified index
+        // Adding a whole collection to the existing list
+        List<Integer> newList = new ArrayList<>(); 
+        newList.add(150);
+        newList.add(160);
+        list.addAll(newList);
 
-        // list.remove(Integer.valueOf(30)); // this will remove the exact element...
+        System.out.println("Initial List: " + list);
 
-        // list.clear();
-        // System.out.println(list);
+        // 3. ACCESSING & UPDATING
+        // .get(index) retrieves the element
+        System.out.println("Element at index 1: " + list.get(1));
 
-        // set function
+        // .set(index, value) updates the value at a specific index
+        list.set(2, 1000); 
+        System.out.println("After updating index 2: " + list);
 
-        // list.set(2, 1000);
-        // System.out.println(list);
+        // 4. CHECKING PROPERTIES
+        // .contains(value) returns a boolean
+        System.out.println("Does list contain 50? " + list.contains(50));
+        System.out.println("List size: " + list.size());
 
-        // // contains method
-        // System.out.println(list.contains(50));
+        // 5. REMOVING ELEMENTS
+        // Remove by index
+        list.remove(1); 
 
-        // iterating
-        // for (int i = 0; i < list.size(); i++) {
-        //     System.out.println("The element is " + list.get(i));
-        // }
+        // Remove by specific value (requires wrapping primitive in Integer object)
+        list.remove(Integer.valueOf(30)); 
 
-        for (Integer integer : list) {
-            System.out.println("For each element is: " + integer);
+        System.out.println("After removals: " + list);
+
+        // 6. ITERATION (Three common ways)
+        System.out.println("\n--- Iteration Methods ---");
+
+        // A. Classic For Loop (Useful if you need the index 'i')
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("For Loop (Index " + i + "): " + list.get(i));
         }
+
+        // B. Enhanced For-Each Loop (Most common for readability)
+        for (Integer element : list) {
+            System.out.println("For-Each: " + element);
+        }
+
+        // C. Iterator (Safest way to remove elements while looping)
+        Iterator<Integer> it = list.iterator();
+        while (it.hasNext()) {
+            System.out.println("Iterator: " + it.next());
+        }
+
+        // 7. CLEARING THE LIST
+        list.clear();
+        System.out.println("\nList after clear(): " + list);
     }
 }
