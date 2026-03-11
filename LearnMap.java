@@ -1,20 +1,25 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class LearnMap {
 
     public static void main(String[] args) {
         // String is the Key, Integer is the Value
-        Map<String, Integer> numbers = new HashMap<>();
+        // Map<String, Integer> numbers = new HashMap<>(); // No guaranteed order; Complexity: O(1) for get/put/remove
+        Map<String, Integer> numbers = new TreeMap<>(); // Sorted by Key (alphabetically); Complexity: O(log n) for get/put/remove
 
         // 1. ADDING DATA
         numbers.put("One", 1);
         numbers.put("Two", 2);
         numbers.put("Three", 3);
 
+        // Update value for an existing key
+        numbers.remove("Three");
+
         // putIfAbsent prevents overwriting existing data
-        numbers.putIfAbsent("Two", 23); 
-        
+        numbers.putIfAbsent("Two", 23);
+
         System.out.println("Map Content: " + numbers);
 
         // 2. ITERATION (3 Ways)
@@ -38,7 +43,7 @@ public class LearnMap {
         System.out.println("\nContains Value 23? " + numbers.containsValue(23));
         System.out.println("Contains Key 'Two'? " + numbers.containsKey("Two"));
         System.out.println("Is Map Empty? " + numbers.isEmpty());
-        
+
         // Bonus: Get a value by key
         System.out.println("Value for 'Three': " + numbers.get("Three"));
     }
