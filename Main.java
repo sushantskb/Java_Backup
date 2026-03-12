@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Java is running in the cloud!");
+        System.out.println("Hello world!");
     }
 }
